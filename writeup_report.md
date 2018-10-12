@@ -41,8 +41,8 @@ To train the classifier, I used [KITTI](http://www.cvlibs.net/datasets/kitti/) a
 
 | Class        | # of Samples | Percentage | Udacity Download Link                                                                         |
 |:-------------|:--------|:-----------|:----------------------------------------------------------------------------------------------|
-| Vehicles     | 8792    | 49,5 %     | [vehicles.zip](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip)         |
-| Non-Vehicles | 8968    | 50,5 %     | [non-vehicles.zip](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip) |
+| Vehicles     | 8792    | 49.5 %     | [vehicles.zip](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip)         |
+| Non-Vehicles | 8968    | 50.5 %     | [non-vehicles.zip](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip) |
 
 The sample images from both classes are as below.
 ![](./output_images/trainingset.png)
@@ -106,7 +106,7 @@ The diagrams below show a result of the features for the class "vehicle" and "no
 
 To find out the best parameters of the color histogram feature, I tested it with the following parameter sets.
 - Color space : RGB, LUV, HLS, YUV, YCrCb
-- # of bins : 8, 16, 32, 64
+- number of bins : 8, 16, 32, 64
 
 The table below shows the results on the test dataset. With the result, I cannot assure that there is a strong correlation between the number of bins and accuracy, but it seems to be high with color space.
 As a result, LUV with 32bins, HLS with 64bins, YCrCb with 64 bins were considered as the best scores (≥91).
@@ -139,9 +139,9 @@ As a result, LUV with 32bins, HLS with 64bins, YCrCb with 64 bins were considere
 ### 3.4 Histogram of Oriented Gradients (HOG) Features
 
 For the last feature, the histogram of oriented gradients (HOG) from three separate channels were used. The function ` get_hog_features(image, orient, pix_per_cell, cell_per_block, vis=False, feature_vec=True)`  first takes an image and calculates the HOG features for the specified color channel, then returns a 1D feature vector. The total length of the HOG feature vector can be calculated with following: 
-- # of block positions = (64pixels / 8cells_per_block - 1)^2 = 49
-- # of cells per block = 2 * 2 = 4
-- # of orientations = 9
+- number of block positions = (64pixels / 8cells_per_block - 1)^2 = 49
+- number of cells per block = 2 * 2 = 4
+- number of orientations = 9
 - => Total length of a single channel = 49 * 4 * 9 = 1764
 - => Total length of all channels = 1764 * 3 = 5292
 
@@ -150,9 +150,12 @@ I haven't got a chance yet to look through the paper, [Histograms of Oriented Gr
 The charts below show a result of the features for the class "vehicle" and "non-vehicle". YCrCb image is taken in the top row, followed by the Y, Cr and Cb channels. The second row shows the corresponding HOG Images with orientations and the last row depicts the concatenated 1D feature vectors. 
 
 **Class: "Vehicle"**
+
 ![](./output_images/hog_car.png)
 
+
 **Class: Non-Vehicle"**
+
 ![](./output_images/hog_noncar.png)
 
 
@@ -230,9 +233,6 @@ The image below shows each step for the HOG sub-sampling method.
 ![](./output_images/subsampling3.png)
 
 
-### 4.1 Process of the Full Pipeline (???)
-
-
 ## 5. Sliding Window Search
 To configure sliding window search, I explored several parameters such as window sizes and positions with various overlaps in the X and Y directions. The following five images describe the implementation of all search windows with various `scales`: small(x1, x1.5), medium(x2, x2.5), and large(x3) windows
 When I implemented it with 0.5 scales, it returned too many false positives, so it wasn't applied.
@@ -240,16 +240,21 @@ Furthermore, the `overlap` of 50% in both X and Y directions was not enough to p
 
 **1) Scale=1**
 ![](./output_images/slidingwindow1.png)
+
 **1) Scale=1.5**
 ![](./output_images/slidingwindow2.png)
+
 **1) Scale=2**
 ![](./output_images/slidingwindow3.png)
+
 **1) Scale=2.5**
 ![](./output_images/slidingwindow4.png)
+
 **1) Scale=3**
 ![](./output_images/slidingwindow5.png)
 
 The image below shows the rectangles returned by `find_cars` applied onto one of the test images in the final implementation. Notice that there are several positive predictions on each of the cars, but also found a false positive prediction on near a guard rail.
+
 ![](./output_images/slidingwindow6.png)
 
 ## 6. Heat map
