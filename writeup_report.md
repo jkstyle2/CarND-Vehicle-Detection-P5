@@ -300,8 +300,6 @@ The code for processing video is in the last cells, and is almost same as the co
 
 ### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
-
 This project deals with a kind of old fashioned methods. However, it was valuable enough to go through all the processing steps such as HOG, Spatial binning, Color histogram, Heatmap, etc. It has helped me to better understand and judge the pros and cons of newer or alternatives concepts.
 Moreover, It was also clear to get to know about how difficult and time consuming it is regarding parameter tuning manually.
 
