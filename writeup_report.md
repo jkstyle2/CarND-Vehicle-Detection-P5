@@ -66,6 +66,7 @@ One thing I learnt about differences between "binning" and "sub-sampling" is tha
 To find out the best parameters of the spatially binning feature, I tested it with the following parameter sets.
 - Color space : RGB, LUV, HLS, YUV, YCrCb
 - Image size : (8x8), (16x16), (32x32)
+- => Total length of the feature = 32 * 32 * 3 = 3072
 
 The table below shows the results on the test dataset. One thing I was interested is that there seems to be no correlation between the image size and the accuracy(see 8x8 is higher than 16x16, but lower than 32x32). I find that the accuracy is more likely to depend on the color space. 
 As a result, RGB, LUV, YUV, YCrCb color spaces with 32x32 image size were considered as the best scores (≥90).
